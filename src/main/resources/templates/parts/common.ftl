@@ -7,6 +7,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
 <style>
@@ -22,6 +23,11 @@
         text-align: left;
         padding: 15px;
         text-align: center;
+    }
+
+    td, th img{
+        width: 250px;
+        height: 100px;
     }
 
     tbody tr:hover{
