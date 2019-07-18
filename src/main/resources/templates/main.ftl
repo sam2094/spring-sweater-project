@@ -1,29 +1,45 @@
 <#import "parts/common.ftl" as c>
 <#import "parts/login.ftl" as l>
 <@c.page>
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <form method="get" action="/main" class="form-inline">
+            <input class="form-control" type="text" name="filter" value="${filter?ifExists}"
+                   placeholder="Search by tag">
+            <button class="btn btn-primary ml-2" type="submit">Search</button>
+        </form>
+    </div>
+</div>
+  <a class="btn btn-primary mb-3" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
+     aria-controls="collapseExample">
+      Add new message
+  </a>
+<div class="collapse" id="collapseExample">
+    <div class="form-group">
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <input class="form-control" type="text" name="text" placeholder="Input message">
 
-<div>
-    <@l.logout/>
-</div>
-<div>
-    <a href="/user"> User list</a>
-</div>
-<div>
-    <form method="post"  enctype="multipart/form-data">
-        <input type="text" name="text" placeholder="Input message">
-        <input type="text" name="tag" placeholder="Input tag">
-        <input type="file" name="file">
-        <input type="hidden" name="_csrf" value="${_csrf.token}">
-        <button type="submit">Add</button>
-    </form>
-</div>
-<div>Messages list</div>
-<br>
-<form method="get" action="/main">
-    <input type="text" name="filter" value="${filter?ifExists}" placeholder="Input message">
-    <button type="submit">Find</button>
-</form>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" name="tag" placeholder="Input tag">
 
+            </div>
+            <div class="form-group">
+                <div class="custom-file">
+                    <input type="file" name="file" class="custom-file-input" id="customFile"
+                           aria-describedby="inputGroupFileAddon01">
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                </div>
+            </div>
+            <input class="form-control" type="hidden" name="_csrf" value="${_csrf.token}">
+
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">Add</button>
+            </div>
+        </form>
+    </div>
+</div>
 <table>
     <thead>
     <tr>
@@ -43,9 +59,8 @@
         <td>${message.authorName}</td>
         <td>
             <#if message.filename??>
-                <img style="width:250px;height:100px" src="/img/${message.filename}">
+                <img class="img-fluid img-thumbnail" src="/img/${message.filename}">
             </#if>
-
         </td>
     </tr>
     <#else>
