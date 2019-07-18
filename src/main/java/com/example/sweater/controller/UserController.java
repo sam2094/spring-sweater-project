@@ -15,8 +15,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping("/user")
-@PreAuthorize("hasAuthority('ADMIN')")
+@RequestMapping("/user") // наличие метода над классом позволяет не указывать его над методами
+@PreAuthorize("hasAuthority('ADMIN')") //проверка роль пользователя прежде чем выполнятся методы данного класса
 public class UserController {
     @Autowired
     private UserRepo userRepo;
@@ -27,7 +27,7 @@ public class UserController {
         return "userList";
     }
 
-    @GetMapping("{user}")
+    @GetMapping("{user}") // mapping,позволяющий получить самого пользователя по id с указанием внизу в @PathVariable не Long id а User user
     public String userEditForm(@PathVariable User user, Model model) {
         model.addAttribute("user", user);
         model.addAttribute("roles", Role.values());
@@ -37,7 +37,7 @@ public class UserController {
     @PostMapping
     public String userSave(@RequestParam String username,
                            @RequestParam Map<String, String> form,
-                           @RequestParam("userId") User user) {
+                           @RequestParam("userId") User user /* по id находим пользователя */) {
         user.setUsername(username);
         Set<String> roles = Arrays.stream(Role.values())
                 .map(Role::name)

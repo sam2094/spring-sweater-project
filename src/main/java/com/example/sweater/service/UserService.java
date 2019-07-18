@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service // тоже компонент,но более декларативно описыввющий то , что это сервис
 public class UserService implements UserDetailsService {
     @Autowired
     private UserRepo userRepo;

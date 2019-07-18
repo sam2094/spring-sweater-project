@@ -31,7 +31,7 @@ public class MainController {
     }
 
     @GetMapping("/main")
-    public String main(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
+    public String main(@RequestParam(required = false, defaultValue = "" /*при отсутвии фильтра подставится пустое значение*/) String filter, Model model) {
         Iterable<Message> messages = messageRepo.findAll();
         if (filter.trim() != null && !filter.trim().isEmpty()) {
             messages = messageRepo.findByTag(filter);
@@ -43,16 +43,16 @@ public class MainController {
         return "main";
     }
 
-    @PostMapping("/add")
+    @PostMapping("/main")
     public String add(@AuthenticationPrincipal User user,
                       @RequestParam String text,
                       @RequestParam String tag,
                       @RequestParam("file") MultipartFile file,
                       Map<String, Object> model) throws IOException {
         Message message = new Message(text, tag, user);
-        if (file!=null && !file.getOriginalFilename().isEmpty()){
+        if (file != null && !file.getOriginalFilename().isEmpty()) {
             File uploadDir = new File(uploadPath);
-            if (!uploadDir.exists()){
+            if (!uploadDir.exists()) {
                 uploadDir.mkdir();
             }
             String uuidFile = UUID.randomUUID().toString();

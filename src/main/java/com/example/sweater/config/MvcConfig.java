@@ -20,7 +20,7 @@ public class MvcConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/img/**") // запрос по адресу "img/" будет перенаправляться // по пути на строчке ниже
                 .addResourceLocations("file:///" + uploadPath + "/");
-        registry.addResourceHandler("/static/") // запрос по адресу "img/" будет перенаправляться // по пути на строчке ниже
-                .addResourceLocations("classpath:/static/**");
+        registry.addResourceHandler("/static/**") // раздача статического css (или чего то другого) раздается тоже без авторизации
+                .addResourceLocations("classpath:/static/"); // поиск происходит от корня проекта
     }
 }

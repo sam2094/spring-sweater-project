@@ -9,7 +9,7 @@
     <a href="/user"> User list</a>
 </div>
 <div>
-    <form method="post" action="/add" enctype="multipart/form-data">
+    <form method="post"  enctype="multipart/form-data">
         <input type="text" name="text" placeholder="Input message">
         <input type="text" name="tag" placeholder="Input tag">
         <input type="file" name="file">
@@ -20,7 +20,7 @@
 <div>Messages list</div>
 <br>
 <form method="get" action="/main">
-    <input type="text" name="filter" value="${filter}" placeholder="Input message">
+    <input type="text" name="filter" value="${filter?ifExists}" placeholder="Input message">
     <button type="submit">Find</button>
 </form>
 

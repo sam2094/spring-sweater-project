@@ -18,7 +18,10 @@ public class User implements UserDetails {
     private boolean active;
 
     @ElementCollection(targetClass = Role.class,fetch = FetchType.EAGER)
-    @CollectionTable(name = "user_role",joinColumns = @JoinColumn(name = "user_id"))
+// Embedded объекты Embedded объект – это объект, который не имеет собственной identity, а зависит от другой сущности
+// Для определения коллекции embedded объектов используется ElementCollection. Декларирование отображения embedded похоже на OneToMany, за исключением того, что целевая таблица является Embeddable, а не сущностью. Это позволяет проще объявлять коллекции простых объектов, без необходимости определения обратных связей и внесения Id.
+// Отличием ElementCollection от OneToMany служит то, что целевые объекты нельзя выбирать, сохранять, мержить напрямую, не зависимо от родительского объекта
+    @CollectionTable(name = "user_role",joinColumns = @JoinColumn(name = "user_id")) // аннотация используется для указания таблицы базы данных, в которой хранятся значения базовой или встраиваемой коллекции типов.
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
 
@@ -59,7 +62,7 @@ public class User implements UserDetails {
     }
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
+    public Collection<? extends GrantedAuthority> getAuthorities() { //Этот метод предоставляет массив объектов GrantedAuthority. Очевидно, что GrantedAuthority это полномочия, которые предоставляются пользователю. Такие полномочия (как правило называемые "роли"), как ROLE_ADMINISTRATOR или ROLE_HR_SUPERVISOR
         return getRoles();
     }
 

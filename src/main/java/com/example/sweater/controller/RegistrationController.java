@@ -17,7 +17,6 @@ public class RegistrationController {
     private UserRepo userRepo;
     @GetMapping("/registration")
     public String registration(){
-
         return "registration";
     }
 
@@ -33,5 +32,4 @@ public class RegistrationController {
         userRepo.save(user);
         return "redirect:/login";
     }
-
 }

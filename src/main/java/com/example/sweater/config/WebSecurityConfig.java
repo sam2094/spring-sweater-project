@@ -9,17 +9,14 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
-
-import javax.sql.DataSource;
-
 @Configuration
 @EnableWebSecurity
+// обеспечивает безопасность для методов(в нашем случае класса UserController чтобы имело отношение для всех методов данного класса) помеченных аннотацией PreAuthorize и PostAuthorize
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
-    private DataSource dataSource;
-    @Autowired
     private UserService userService;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
