@@ -14,6 +14,14 @@
             <input class="form-control" type="password" placeholder="Password" name="password"/>
         </div>
     </div>
+      <#if isRegisterForm>
+    <div class="from-group row mt-1">
+    <label class="col-sm-2 col-form-label">Email:</label>
+        <div class="col-sm-6">
+            <input class="form-control" type="email" placeholder="Email" name="email"/>
+        </div>
+    </div>
+      </#if>
     <input type="hidden" name="_csrf" value="${_csrf.token}">
     <div class="from-group row mt-1">
         <label class="col-sm-2 col-form-label"></label>
@@ -28,6 +36,7 @@
 <#macro logout>
 <form action="/logout" method="post">
     <input type="hidden" name="_csrf" value="${_csrf.token}">
-    <button class="btn btn-primary type="submit">Sign Out</button>
+    <button class="btn btn-primary type=" submit
+    ">Sign Out</button>
 </form>
 </#macro>
