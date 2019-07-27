@@ -29,7 +29,7 @@ CREATE TABLE `message` (
   `id` bigint(20) NOT NULL,
   `filename` varchar(255) DEFAULT NULL,
   `tag` varchar(255) DEFAULT NULL,
-  `text` varchar(255) DEFAULT NULL,
+  `text` varchar(2048) DEFAULT NULL,
   `user_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK70bv6o4exfe3fbrho7nuotopf` (`user_id`)
