@@ -18,9 +18,7 @@ public class User implements UserDetails {
     private String username;
     @NotBlank(message = "Password cannot be empty")
     private String password;
-    @Transient // так как получать и создавать повтор пароля не нужно данная аннотация сообщает Hibernate не делать этого
-    @NotBlank(message = "Password confirmation cannot be empty")
-    private String password2;
+
     private boolean active;
     @Email(message = "Email is not correct") // проверка на валидность почты
     @NotBlank(message = "Email cannot be empty")
@@ -39,13 +37,6 @@ public class User implements UserDetails {
         return activationCode;
     }
 
-    public String getPassword2() {
-        return password2;
-    }
-
-    public void setPassword2(String password2) {
-        this.password2 = password2;
-    }
 
     public void setActivationCode(String activationCode) {
         this.activationCode = activationCode;

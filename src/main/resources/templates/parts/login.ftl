@@ -52,6 +52,15 @@
              </#if>
         </div>
     </div>
+      <div class="from-group row mt-1">
+          <label class="col-sm-2 col-form-label"></label>
+          <div class="g-recaptcha col-sm-6" data-sitekey="6Le0CLAUAAAAAFjPKLz-0JY8rTYlVbvkjECcuqtX"></div>
+           <#if captchaError??>
+          <div class="alert alert-danger" role="alert">
+              ${captchaError}
+          </div>
+           </#if>
+      </div>
       </#if>
     <input type="hidden" name="_csrf" value="${_csrf.token}">
     <div class="from-group row mt-1">

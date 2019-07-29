@@ -40,6 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login")
                 .permitAll()
+                .and().rememberMe() // даже при протухании сессии spring по id пользователя попытается найти настройки авторизовать нас повторно, но при наличии нескольких серверов или презапуска приложения она теряется поэтому отдельно будет храниться в базе данных
                 .and()
                 .logout()
                 .permitAll();
